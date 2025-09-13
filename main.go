@@ -63,7 +63,7 @@ func main() {
 	commitPerPageListOptions := &github.ListOptions{PerPage: 10}
 	commitPerPageListOptions.Page = 1
 	for {
-		since := time.Now().Add(-80 * time.Hour)
+		since := time.Now().Add(-24 * time.Hour)
 		commitOpt := &github.CommitsListOptions{Author: user, ListOptions: *commitPerPageListOptions, SHA: testbranch.GetName(), Since: since}
 		commits, resp, err := client.Repositories.ListCommits(ctx, user, testrepo.GetName(), commitOpt)
 		fmt.Println("Commits:", len(commits))
@@ -79,16 +79,20 @@ func main() {
 			return
 		}
 
-		fmt.Println(commits)
 		for _, commit := range commits {
 			fmt.Printf("Commit: %s, Author: %s, Date: %s\n", commit.GetSHA(), commit.GetAuthor().GetLogin(), commit.GetCommit().GetAuthor().GetDate())
 			fmt.Printf("Message: %s\n", commit.GetCommit().GetMessage())
-			fmt.Printf("Files changed: %d\n", commit.GetStats().GetTotal())
 			fmt.Println("File names:")
-			for _, file := range commit.Files {
-				fmt.Printf("- %s\n", file.GetFilename())
+			commitDetails, _, err := rs.GetCommit(ctx, user, testrepo.GetName(), *commit.SHA, nil)
+			if err != nil {
+				fmt.Println(err)
+				return
 			}
-			fmt.Printf("Changes: %d additions, %d deletions\n", commit.GetStats().GetAdditions(), commit.GetStats().GetDeletions())
+			for _, file := range commitDetails.Files {
+				fmt.Printf("Files changed: %d\n", commitDetails.GetStats().GetTotal())
+				fmt.Printf("- %s\n", file.GetFilename())
+				fmt.Printf("  Additions: %d, Deletions: %d, Changes: %d\n", file.GetAdditions(), file.GetDeletions(), file.GetChanges())
+			}
 		}
 		if resp.NextPage == 0 {
 			break
