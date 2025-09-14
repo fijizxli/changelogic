@@ -245,7 +245,6 @@ func GenerateMarkdownResult(summary string, repo string, branch string, user str
 	markdownBuilder.WriteString("draft: false\n")
 	tags := fmt.Sprintf("tags: ['daily standup', '%s', '%s']\n", repo, user)
 	markdownBuilder.WriteString(tags)
-	markdownBuilder.WriteString("categories: [development, updates]\n")
 	markdownBuilder.WriteString("---\n\n")
 	markdownBuilder.WriteString("# Repository: " + repo + "\n")
 	markdownBuilder.WriteString("## Branch: " + branch + "\n")
