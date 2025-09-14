@@ -1,0 +1,200 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+	<title>changelogic</title>
+	<link>http://localhost:1313/categories/development/</link>
+	<description>Recent content in Development on changelogic</description>
+	<generator>Hugo -- gohugo.io</generator>
+	<language>en-us</language>
+    
+        <atom:link href="http://localhost:1313/categories/development/index.xml" rel="self" type="application/rss+xml" />
+	
+	
+	<item>
+		<title>Daily Standup Summary - 2025-09-14T22:00:51&#43;02:00</title>
+		<link>http://localhost:1313/standup_summary_changelogic_20250914220051/</link>
+		<pubDate>Sun, 14 Sep 2025 22:00:51 +0200</pubDate>
+		
+		<guid>http://localhost:1313/standup_summary_changelogic_20250914220051/</guid>
+		<description>&lt;h1 id=&#34;repository-changelogic&#34;&gt;Repository: changelogic&lt;/h1&gt;
+&lt;h2 id=&#34;branch-main&#34;&gt;Branch: main&lt;/h2&gt;
+&lt;h2 id=&#34;user-fijizxli&#34;&gt;User: fijizxli&lt;/h2&gt;
+&lt;h1 id=&#34;standup-summary-changelogic-proof-of-concept-project&#34;&gt;Standup Summary: Changelogic Proof of Concept Project&lt;/h1&gt;
+&lt;h2 id=&#34;what-weve-completed&#34;&gt;What We&amp;rsquo;ve Completed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Successfully implemented the core functionality for monitoring GitHub repositories and generating changelogs based on recent commits (last 24 hours)&lt;/li&gt;
+&lt;li&gt;Fixed critical issues with commit details retrieval that were previously causing errors in file tracking&lt;/li&gt;
+&lt;li&gt;Updated the README to clearly document what Changelogic is: &amp;ldquo;Automate changelog creation based on github diffs&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Corrected time frame from 80 hours back to proper 24-hour window for recent commits&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;key-technical-improvements&#34;&gt;Key Technical Improvements&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Refactored code into more maintainable functions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Created &lt;code&gt;GetReposByUser()&lt;/code&gt;, &lt;code&gt;GetBranchesOnRepo()&lt;/code&gt;, and &lt;code&gt;GetCommitsOnBranch()&lt;/code&gt; functions&lt;/li&gt;
+&lt;li&gt;Implemented proper commit detail handling with &lt;code&gt;GetCommitDetails()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Fixed critical bugs in the commit processing flow:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Corrected file tracking from using &lt;code&gt;commit.Files&lt;/code&gt; (which was broken) to properly use &lt;code&gt;commitDetails.Files&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Ensured accurate addition/deletion counts for each changed file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Improved logging and output formatting for better readability of changes&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;next-steps&#34;&gt;Next Steps&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Continue testing with real repositories to validate the changelog generation functionality&lt;/li&gt;
+&lt;li&gt;Implement actual changelog generation logic (not just display)&lt;/li&gt;
+&lt;li&gt;Add error handling for edge cases in GitHub API responses&lt;/li&gt;
+&lt;li&gt;Consider adding configuration options for different timeframes and repositories&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The project is now at a stage where it can properly generate changelogs from recent commits - we&amp;rsquo;re ready to move into the next phase of development.&lt;/p&gt;
+</description>
+	</item>
+	
+	<item>
+		<title>Daily Standup Summary2025-09-14T21:53:35&#43;02:00</title>
+		<link>http://localhost:1313/standup_summary_changelogic_20250914215335/</link>
+		<pubDate>Sun, 14 Sep 2025 21:53:35 +0200</pubDate>
+		
+		<guid>http://localhost:1313/standup_summary_changelogic_20250914215335/</guid>
+		<description>&lt;h1 id=&#34;repository-changelogic&#34;&gt;Repository: changelogic&lt;/h1&gt;
+&lt;h2 id=&#34;branch-main&#34;&gt;Branch: main&lt;/h2&gt;
+&lt;h2 id=&#34;user-fijizxli&#34;&gt;User: fijizxli&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Standup Summary:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Documentation Update&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Added &amp;ldquo;Changelogic - Proof of Concept&amp;rdquo; title and adjusted description in &lt;code&gt;README.md&lt;/code&gt; (Additions: 1, Deletions: 2).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Time Frame Adjustment&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Updated commit time window to &lt;strong&gt;last 24 hours&lt;/strong&gt; instead of 80 hours (3 days) in the codebase.&lt;/li&gt;
+&lt;li&gt;Fixed logic for handling commits and improving performance in the loop.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Code Improvements&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Refactored &lt;code&gt;GetCommitDetails&lt;/code&gt; to handle commit details correctly, ensuring proper retrieval of file diffs and stats.&lt;/li&gt;
+&lt;li&gt;Simplified the main loop to focus on relevant commits (e.g., &lt;code&gt;testbranch&lt;/code&gt; for testing).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Testing &amp;amp; Validation&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Verified that the application now accurately tracks commits from GitHub, with improved error handling for edge cases (e.g., invalid SHA or missing files).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Key Takeaways&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The project is stable, with focus on refining time windows and improving commit detail retrieval.&lt;/li&gt;
+&lt;li&gt;Documentation was updated to reflect changes in the codebase.&lt;/li&gt;
+&lt;li&gt;Testing confirmed that the application works within the intended time frame and handles edge cases effectively.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+	</item>
+	
+	<item>
+		<title>Daily Standup Summary</title>
+		<link>http://localhost:1313/standup_summary_changelogic_20250914214818/</link>
+		<pubDate>Sun, 14 Sep 2025 21:48:18 +0200</pubDate>
+		
+		<guid>http://localhost:1313/standup_summary_changelogic_20250914214818/</guid>
+		<description>&lt;h1 id=&#34;repository-changelogic&#34;&gt;Repository: changelogic&lt;/h1&gt;
+&lt;h2 id=&#34;branch-main&#34;&gt;Branch: main&lt;/h2&gt;
+&lt;h2 id=&#34;user-fijizxli&#34;&gt;User: fijizxli&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Standup Summary:&lt;/strong&gt;&lt;br&gt;
+The code aims to retrieve recent commits from a GitHub branch (e.g., &lt;code&gt;testbranch&lt;/code&gt;) within the last 24 hours and display file changes, additions, deletions, and commit messages. Key points:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Objective&lt;/strong&gt;: Fetch and analyze commits on a specific branch (e.g., &lt;code&gt;testbranch&lt;/code&gt;) for repository updates.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Implementation&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Uses &lt;code&gt;go-github&lt;/code&gt; to interact with the GitHub API.&lt;/li&gt;
+&lt;li&gt;Filters commits within the last 24 hours using &lt;code&gt;Since&lt;/code&gt; parameter.&lt;/li&gt;
+&lt;li&gt;Displays commit details (SHA, author, date, message, and file changes).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Output Highlights&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Multiple commits are shown, including:
+&lt;ul&gt;
+&lt;li&gt;103 files changed in &lt;code&gt;go.mod&lt;/code&gt; (e.g., new dependencies).&lt;/li&gt;
+&lt;li&gt;93 additions/deletions in &lt;code&gt;main.go&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Commit details like &lt;code&gt;Additions: 4&lt;/code&gt;, &lt;code&gt;Deletions: 0&lt;/code&gt;, and &lt;code&gt;Changes: 4&lt;/code&gt; for &lt;code&gt;go.mod&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Errors or issues noted in the code (e.g., potential API call failures, incomplete output).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Next Steps&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Fix the branch retrieval logic (e.g., ensure &lt;code&gt;testbranch.GetName()&lt;/code&gt; is correctly handled).&lt;/li&gt;
+&lt;li&gt;Debug commit details to ensure accurate file changes and metadata are displayed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Notes&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The code includes a placeholder function (&lt;code&gt;Last24HourChangesOnBranch&lt;/code&gt;) that needs implementation.&lt;/li&gt;
+&lt;li&gt;The output shows progress, but errors (e.g., API call failures) may occur if the branch or repository is not properly configured.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+	</item>
+	
+	<item>
+		<title>Daily Standup Summary - 2025-09-14 17:52:44</title>
+		<link>http://localhost:1313/standup_summary_changelogic_20250914175244/</link>
+		<pubDate>Sun, 14 Sep 2025 17:52:44 +0200</pubDate>
+		
+		<guid>http://localhost:1313/standup_summary_changelogic_20250914175244/</guid>
+		<description>&lt;h1 id=&#34;repository-changelogic&#34;&gt;Repository: changelogic&lt;/h1&gt;
+&lt;h2 id=&#34;branch-main&#34;&gt;Branch: main&lt;/h2&gt;
+&lt;h2 id=&#34;user-fijizxli&#34;&gt;User: fijizxli&lt;/h2&gt;
+&lt;h3 id=&#34;standup-summary&#34;&gt;Standup Summary&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Objective:&lt;/strong&gt; Retrieve repository metadata (repos, branches, commits) using &lt;code&gt;go-github&lt;/code&gt; package.&lt;/p&gt;
+&lt;h4 id=&#34;key-highlights&#34;&gt;&lt;strong&gt;Key Highlights:&lt;/strong&gt;&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Functionality Achieved:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Listed user repositories (&lt;code&gt;RepoService.ListByUser&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;Retrieved branches and their names for a specific repo.&lt;/li&gt;
+&lt;li&gt;Fetched commits from a branch with file change details (e.g., &lt;code&gt;go.mod&lt;/code&gt;, &lt;code&gt;main.go&lt;/code&gt; diffs).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Challenges &amp;amp; Issues:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Version Compatibility:&lt;/strong&gt; Code uses &lt;code&gt;github.com/google/go-github/v74&lt;/code&gt; but shows &amp;ldquo;experiments with go-github package&amp;rdquo; and errors related to &lt;code&gt;go.sum&lt;/code&gt;/&lt;code&gt;go.mod&lt;/code&gt; changes, suggesting potential version conflicts or incomplete dependencies.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Incomplete Functionality:&lt;/strong&gt; The &lt;code&gt;Last24HourChangesOnBranch&lt;/code&gt; function is stubbed and not fully implemented (e.g., commit details parsing).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Next Steps:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Resolve Dependencies:&lt;/strong&gt; Ensure &lt;code&gt;go-github&lt;/code&gt; version compatibility with &lt;code&gt;go.sum&lt;/code&gt;/&lt;code&gt;go.mod&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Implement Commit Details:&lt;/strong&gt; Complete the logic to parse commit diffs (e.g., &lt;code&gt;commit.Files&lt;/code&gt;) and display changes accurately.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Test Edge Cases:&lt;/strong&gt; Verify behavior with different GitHub versions and repository structures.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;observations&#34;&gt;&lt;strong&gt;Observations:&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;The code works for basic repo/branch/commit retrieval but faces hurdles with dependency management and incomplete functionality.&lt;/li&gt;
+&lt;li&gt;Future improvements should focus on stabilizing dependencies and fully implementing commit detail parsing.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+	</item>
+	
+	</channel>
+</rss>

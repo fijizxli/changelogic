@@ -1,0 +1,125 @@
+body {
+  max-width: 900px;
+  margin: auto;
+  padding: 2em;
+  line-height: 1.6;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  color: #1a1a1a;
+}
+
+/* Header and footer areas */
+.menu {
+  padding: 0;
+  background: #2a2a72;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.menu li {
+  display: inline-block;
+  margin: 0 10px;
+}
+.menu a {
+  text-decoration: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+.menu a:hover {
+  background: #4a4ae9;
+}
+.article-meta {
+  background: #e6e9ff;
+  padding: 8px 15px;
+  border-radius: 6px;
+  color: #2a2a72;
+  font-size: 0.9em;
+}
+.menu, .article-meta, footer {
+  text-align: center;
+}
+.title {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: #2a2a72;
+}
+footer {
+  margin-top: 2em;
+  padding: 1em;
+  background: #2a2a72;
+  color: #fff;
+  border-radius: 8px;
+}
+footer a {
+  text-decoration: none;
+  color: #c3cfe2;
+  transition: color 0.3s ease;
+}
+footer a:hover {
+  color: #fff;
+}
+hr {
+  border-style: none;
+  border-top: 2px dashed #4a4ae9;
+  margin: 2em 0;
+}
+
+/* Code */
+pre {
+  border: none;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 1.5em;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  overflow-x: auto;
+}
+code {
+  background: #2a2a72;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+pre code {
+  background: none;
+}
+
+/* Misc elements */
+img, iframe, video {
+  max-width: 100%;
+  border-radius: 8px;
+}
+main {
+  hyphens: auto;
+  background: #fff;
+  padding: 2em;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+blockquote {
+  background: #e6e9ff;
+  border-left: 6px solid #4a4ae9;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-style: italic;
+}
+table {
+  margin: auto;
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+table thead th {
+  background: #2a2a72;
+  color: #fff;
+  padding: 10px;
+}
+th, td {
+  padding: 12px;
+  border: none;
+}
+thead, tfoot, tr:nth-child(even) {
+  background: #e6e9ff;
+}
