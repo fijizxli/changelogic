@@ -30,15 +30,5 @@
     <lastmod>2025-09-14T17:52:44+02:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/daily/</loc>
-  </url><url>
-    <loc>http://localhost:1313/categories/development/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/standup/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/summary/</loc>
-  </url><url>
-    <loc>http://localhost:1313/categories/updates/</loc>
   </url>
 </urlset>
