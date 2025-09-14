@@ -290,50 +290,19 @@ func main() {
 	commits := GetCommitsOnBranch(RepoService, testbranch, ctx, user, testrepo, since)
 	log.Println("Commits in the last 24 hours:", len(commits))
 
-	GetCommitDetails(RepoService, ctx, user, testrepo, testbranch, commits)
+	commitDetails := GetCommitDetails(RepoService, ctx, user, testrepo, testbranch, commits)
+	diffs := CreateDiffs(commitDetails)
+	diffString := strings.Join(diffs, "\n")
 
-	//GET COMMITS
-	/*
-		commitPerPageListOptions := &github.ListOptions{PerPage: 10}
-		commitPerPageListOptions.Page = 1
-		for {
-			since := time.Now().Add(-24 * time.Hour)
-			commitOpt := &github.CommitsListOptions{Author: user, ListOptions: *commitPerPageListOptions, SHA: testbranch, Since: since}
-			commits, resp, err := client.Repositories.ListCommits(ctx, user, testrepo, commitOpt)
-			//fmt.Println("Commits:", len(commits))
-			//fmt.Println("resp:", resp.Status)
+	summary, err := RunOllamaSummary(diffString)
+	if err != nil {
+		log.Println("Error generating summary:", err)
+		return
+	}
+	summary = strings.TrimSpace(summary)
+	log.Printf("%sSummary:%s %s\n", Green, Reset, summary)
 
-			if len(commits) == 0 {
-				fmt.Println("No commits in the last 24 hours")
-				break
-			}
+	GenerateMarkdownResult(summary, testrepo, testbranch, user)
 
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-
-			for _, commit := range commits {
-				fmt.Printf("Commit: %s, Author: %s, Date: %s\n", commit.GetSHA(), commit.GetAuthor().GetLogin(), commit.GetCommit().GetAuthor().GetDate())
-				fmt.Printf("Message: %s\n", commit.GetCommit().GetMessage())
-				commitDetails, _, err := rs.GetCommit(ctx, user, testrepo, *commit.SHA, nil)
-				if err != nil {
-					fmt.Println(err)
-					return
-				}
-				for _, file := range commitDetails.Files {
-					fmt.Printf("Files changed: %d\n", commitDetails.GetStats().GetTotal())
-					fmt.Printf("- %s\n", file.GetFilename())
-					fmt.Printf("  Additions: %d, Deletions: %d, Changes: %d\n", file.GetAdditions(), file.GetDeletions(), file.GetChanges())
-					fmt.Println("Filename:", file.GetFilename())
-					fmt.Println("diff:")
-					fmt.Println(file.GetPatch())
-				}
-			}
-			if resp.NextPage == 0 {
-				break
-			}
-			commitPerPageListOptions.Page = resp.NextPage
-		}
-	*/
+	log.Printf("%sDetailed commits fetched: %d", Green, len(commitDetails))
 }
