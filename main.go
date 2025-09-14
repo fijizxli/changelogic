@@ -240,7 +240,7 @@ func GenerateMarkdownResult(summary string, repo string, branch string, user str
 	var markdownBuilder strings.Builder
 	// Add metadata for hugo
 	markdownBuilder.WriteString("---\n")
-	markdownBuilder.WriteString("title: \"Daily Standup Summary" + "\"\n")
+	markdownBuilder.WriteString("title: \"Daily Standup Summary - " + time.Now().Format("2006-01-02T15:04:05Z07:00") + "\"\n")
 	markdownBuilder.WriteString("date: " + time.Now().Format("2006-01-02T15:04:05Z07:00") + "\n")
 	markdownBuilder.WriteString("draft: false\n")
 	tags := fmt.Sprintf("tags: ['daily standup', '%s', '%s']\n", repo, user)
