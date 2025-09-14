@@ -110,6 +110,27 @@ func GetCommitDetails(rs github.RepositoriesService, ctx context.Context, owner 
 	return allCommits
 }
 
+func CreateDiffs(commits []*github.RepositoryCommit) []string {
+	res := make([]string, len(commits))
+	for i, commit := range commits {
+		log.Printf("%sCommit: %s%s\n", Green, commit.Commit.GetMessage(), Reset)
+		res[i] += fmt.Sprintf("Commit: %s\n", commit.Commit.GetMessage())
+		log.Printf("%s >> Files changed: %d\n", Green, commit.GetStats().GetTotal())
+		res[i] += fmt.Sprintf("%s >> Files changed: %d\n", Green, commit.GetStats().GetTotal())
+		log.Printf("Commit: %s, Author: %s, Date: %s\n", commit.GetSHA(), commit.GetAuthor().GetLogin(), commit.GetCommit().GetAuthor().GetDate())
+		res[i] += fmt.Sprintf("Commit: %s, Author: %s, Date: %s\n", commit.GetSHA(), commit.GetAuthor().GetLogin(), commit.GetCommit().GetAuthor().GetDate())
+		for _, file := range commit.Files {
+			log.Printf("- %s diff:", file.GetFilename())
+			res[i] += fmt.Sprintf("- %s diff:\n", file.GetFilename())
+			log.Printf("%s  Additions: %d, %sDeletions: %d, %s Changes: %d\n", Green, file.GetAdditions(), Red, file.GetDeletions(), Reset, file.GetChanges())
+			res[i] += fmt.Sprintf("  Additions: %d, Deletions: %d, Changes: %d\n", file.GetAdditions(), file.GetDeletions(), file.GetChanges())
+			log.Print(file.GetPatch())
+			res[i] += fmt.Sprintf("%s\n", file.GetPatch())
+		}
+	}
+	return res
+}
+
 func main() {
 	client := github.NewClient(nil).WithAuthToken("")
 	rs := client.Repositories
