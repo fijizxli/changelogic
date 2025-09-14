@@ -9,6 +9,12 @@ import (
 	"github.com/google/go-github/v74/github"
 )
 
+const (
+	Red   = "\033[31m"
+	Green = "\033[32m"
+	Reset = "\033[0m"
+)
+
 func GetReposByUser(rs github.RepositoriesService, ctx context.Context, user string) []*github.Repository {
 	opt := &github.RepositoryListByUserOptions{Type: "owner", Sort: "updated", Direction: "desc"}
 	log.Println("Fetching repos for user:", user)
