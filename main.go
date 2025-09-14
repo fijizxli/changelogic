@@ -260,7 +260,7 @@ func GenerateMarkdownResult(summary string, repo string, branch string, user str
 			log.Println("Error creating contents directory:", err)
 		}
 	}
-	err := os.WriteFile("./contents/"+fileName, []byte(markdownBuilder.String()), 0644)
+	err := os.WriteFile("./changelogic/content/"+fileName, []byte(markdownBuilder.String()), 0644)
 	if err != nil {
 		log.Println("Error writing markdown to file:", err)
 	} else {
