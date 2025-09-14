@@ -228,6 +228,41 @@ func removeThinkTags(response string) string {
 	return re.ReplaceAllString(response, "")
 }
 
+func GenerateMarkdownResult(summary string, repo string, branch string, user string) string {
+	summary = removeThinkTags(summary)
+	var markdownBuilder strings.Builder
+	// Add metadata for hugo
+	markdownBuilder.WriteString("---\n")
+	markdownBuilder.WriteString("title: \"Daily Standup Summary - " + time.Now().Format("2006-01-02") + "\"\n")
+	markdownBuilder.WriteString("date: " + time.Now().Format("2006-01-02T15:04:05Z07:00") + "\n")
+	markdownBuilder.WriteString("draft: false\n")
+	markdownBuilder.WriteString("tags: [standup, summary, daily]\n")
+	markdownBuilder.WriteString("categories: [development, updates]\n")
+	markdownBuilder.WriteString("---\n\n")
+	markdownBuilder.WriteString("# Daily Standup Summary - " + time.Now().Format("2006-01-02 15:04:05") + "\n\n")
+	markdownBuilder.WriteString("## Repository: " + repo + "\n")
+	markdownBuilder.WriteString("## Branch: " + branch + "\n")
+	markdownBuilder.WriteString("## User: " + user + "\n\n")
+	markdownBuilder.WriteString(summary + "\n")
+
+	log.Println("Generated Markdown Summary:\n", markdownBuilder.String())
+
+	fileName := fmt.Sprintf("standup_summary_%s_%s.md", repo, time.Now().Format("20060102150405"))
+	if _, err := os.Stat("./contents"); os.IsNotExist(err) {
+		err := os.Mkdir("./contents", 0755)
+		if err != nil {
+			log.Println("Error creating contents directory:", err)
+		}
+	}
+	err := os.WriteFile("./contents/"+fileName, []byte(markdownBuilder.String()), 0644)
+	if err != nil {
+		log.Println("Error writing markdown to file:", err)
+	} else {
+		log.Println("Markdown summary written to file:", fileName)
+	}
+
+	return markdownBuilder.String()
+}
 
 func main() {
 	client := github.NewClient(nil).WithAuthToken("")
