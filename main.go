@@ -223,6 +223,12 @@ func RunOllamaSummary(diff string) (string, error) {
 	return response.Response, nil
 }
 
+func removeThinkTags(response string) string {
+	re := regexp.MustCompile(`(?s)<think>.*?</think>`)
+	return re.ReplaceAllString(response, "")
+}
+
+
 func main() {
 	client := github.NewClient(nil).WithAuthToken("")
 	rs := client.Repositories
