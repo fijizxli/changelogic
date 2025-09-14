@@ -100,20 +100,10 @@ func GetCommitsOnBranch(rs github.RepositoriesService, branch string, ctx contex
 func GetCommitDetails(rs github.RepositoriesService, ctx context.Context, owner string, repo string, sha string, commits []*github.RepositoryCommit) []*github.RepositoryCommit {
 	allCommits := []*github.RepositoryCommit{}
 	for _, commit := range commits {
-		log.Printf("Commit: %s, Author: %s, Date: %s\n", commit.GetSHA(), commit.GetAuthor().GetLogin(), commit.GetCommit().GetAuthor().GetDate())
-		log.Printf("Message: %s\n", commit.GetCommit().GetMessage())
 		commitDetails, _, err := rs.GetCommit(ctx, owner, repo, *commit.SHA, nil)
 		if err != nil {
 			fmt.Println(err)
 			return nil
-		}
-		for _, file := range commitDetails.Files {
-			log.Printf("Files changed: %d\n", commitDetails.GetStats().GetTotal())
-			log.Printf("- %s\n", file.GetFilename())
-			log.Printf("  Additions: %d, Deletions: %d, Changes: %d\n", file.GetAdditions(), file.GetDeletions(), file.GetChanges())
-			log.Println("Filename:", file.GetFilename())
-			log.Println("diff:")
-			log.Println(file.GetPatch())
 		}
 		allCommits = append(allCommits, commitDetails)
 	}
