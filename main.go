@@ -131,6 +131,98 @@ func CreateDiffs(commits []*github.RepositoryCommit) []string {
 	return res
 }
 
+func RunOllamaSummary(diff string) (string, error) {
+	url := "http://localhost:11434/api/generate"
+
+	model := "qwen3:1.7b"
+	prompt := fmt.Sprintf("Here is the GitHub diff to summarize: %s Please provide the standup summary based on the instructions above.", diff)
+	stream := false
+	keep_alive := "5m"
+
+	system := `
+	You are a senior software engineer writing daily standup updates for technical teams. Your job is to transform raw GitHub diff output into clear, actionable summaries that focus on business impact rather than technical details. 
+
+	## 🎯 YOUR MISSION
+	- Convert code changes into business-impact language (e.g., "reduced API latency" instead of "changed time window")
+	- Focus on what changed, why it matters, and who it affects
+	- Never mention code syntax (no +, -, @@, diff, file paths, line numbers)
+	- Never use passive voice ("was changed" → "we reduced")
+	- Keep it concise: 3-5 bullet points max
+	- Use valid markdown syntax
+
+	## 🚫 STRICT RULES
+	- Do NOT say "in this diff", "the code shows", or "the file changed"
+	- Do NOT mention technical terms like "commit", "stats", "GetCommit()", or "API rate limits" unless absolutely necessary
+	- Do NOT include code snippets or file paths
+	- Do NOT say "this change" or "the change" - be specific about what was changed
+
+	## 💡 HOW TO WRITE IMPACTFUL BULLET POINTS
+	For every change:
+	1. Start with action verb (e.g., "Reduced", "Added", "Fixed", "Improved")
+	2. State the change clearly
+	3. Explain the business impact
+	4. Mention who it affects
+
+	## 🛠️ FILTERING RULES
+	Ignore these in your summary:
+	- Test file changes
+	- Documentation updates
+	- Dependency version bumps
+	- Configuration files (e.g., .yaml, .json, .env)
+	- Formatting-only changes
+
+	Focus ONLY on:
+	- Functional code changes
+	- Performance improvements
+	- Critical bug fixes
+	- Security patches
+	- User-facing feature changes
+
+	## ⚠️ IF NO MEANINGFUL CHANGES
+	If the diff only contains documentation, tests, or config changes, output:  
+	"No significant code changes detected today."`
+
+	// QWEN3 optimized settings
+	payload := map[string]interface{}{
+		"model":      model,
+		"prompt":     prompt,
+		"stream":     stream,
+		"keep_alive": keep_alive,
+		"system":     system,
+		"options": map[string]interface{}{
+			"max_new_tokens":   300,
+			"temperature":      0.6,
+			"top_p":            0.95,
+			"top_k":            20,
+			"min_p":            0.0,
+			"repeat_penalty":   1.1,
+			"seed":             -1,
+			"presence_penalty": 0.5,
+		},
+	}
+
+	jsonData, _ := json.Marshal(payload)
+
+	req, _ := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
+	req.Header.Set("Content-Type", "application/json")
+
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	var response OllamaResponse
+	json.Unmarshal(body, &response)
+	return response.Response, nil
+}
+
 func main() {
 	client := github.NewClient(nil).WithAuthToken("")
 	rs := client.Repositories
